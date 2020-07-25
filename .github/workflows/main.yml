@@ -14,7 +14,7 @@ jobs:
       with:
         issue-number: ${{ github.event.issue.number }}  
         body: |
-          Will print contents of \`{{github.event.issue.body}}\`.
+          Will print contents of `${{github.event.issue.body}}` .
     - uses: actions/checkout@v2
     - name: Run tests
       id: run_bench
