@@ -13,4 +13,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: print a variable
+      timeout-minutes: $ENV_VARIABLE
       run: echo $ENV_VARIABLE
