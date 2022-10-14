@@ -13,7 +13,6 @@ jobs:
     if: startsWith(github.event.issue.title, 'PRINT')
     steps:
     - name: print a variable
-      timeout-minutes: $ENV_VARIABLE
       run: echo $ENV_VARIABLE
     - name: Accept the task
       uses: peter-evans/create-or-update-comment@v1
