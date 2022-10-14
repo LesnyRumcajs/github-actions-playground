@@ -11,7 +11,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: startsWith(github.event.issue.title, 'PRINT')
     steps:
     - name: print a variable
       run: echo $ENV_VARIABLE
