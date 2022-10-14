@@ -1,8 +1,9 @@
 name: Manual run
 
 on:
-  issues:
-    types: [opened]
+  push:
+    branches:
+      - main
       
 env:
   ENV_VARIABLE: 42
@@ -14,27 +15,3 @@ jobs:
     steps:
     - name: print a variable
       run: echo $ENV_VARIABLE
-    - name: Accept the task
-      uses: peter-evans/create-or-update-comment@v1
-      with:
-        issue-number: ${{ github.event.issue.number }}  
-        body: |
-          Will print contents of `${{github.event.issue.body}}` .
-    - uses: actions/checkout@v2
-    - name: Run tests
-      id: run_bench
-      run: |
-        cat ${{github.event.issue.body}} | tee results.txt
-        REPORT="$(cat results.txt)"
-        REPORT="${REPORT//'%'/'%25'}"
-        REPORT="${REPORT//$'\n'/'%0A'}"
-        REPORT="${REPORT//$'\r'/'%0D'}"
-        echo "::set-output name=results::$REPORT"
-    - name: Close Issue
-      uses: peter-evans/close-issue@v1
-      with:
-        comment: |
-          Here you go!
-          ```
-          ${{ steps.run_bench.outputs.results }}
-          ```
