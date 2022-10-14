@@ -6,12 +6,15 @@ on:
       - master
       
 env:
-  ENV_VARIABLE: ${{ 42 }}
+  ENV_VARIABLE: 42
  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: print a variable
-      timeout-minutes: ${{ env.ENV_VARIABLE }}
+      timeout-minutes: ${{ fromJSON(env.ENV_VARIABLE) }}
+      run: echo $ENV_VARIABLE
+    - name: print a variable
+      timeout-minutes: 42
       run: echo $ENV_VARIABLE
