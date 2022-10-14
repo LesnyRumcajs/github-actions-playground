@@ -3,7 +3,7 @@ name: Manual run
 on:
   push:
     branches:
-      - main
+      - master
       
 env:
   ENV_VARIABLE: 42
