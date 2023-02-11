@@ -5,16 +5,11 @@ on:
     branches:
       - master
       
-env:
-  ENV_VARIABLE: 42
- 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: print a variable
-      timeout-minutes: ${{ fromJSON(env.ENV_VARIABLE) }}
-      run: echo $ENV_VARIABLE
-    - name: print a variable
-      timeout-minutes: 42
-      run: echo $ENV_VARIABLE
+    - uses: actions/checkout@v3
+    - run: |
+        lerna bootstrap
+        yarn lint
